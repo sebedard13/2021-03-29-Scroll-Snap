@@ -1,0 +1,55 @@
+
+
+// TOOLS
+// mixins et fonctions utilisés globalement dans le SCSS (Sass)
+@import "01-tools/functions";
+@import "01-tools/mixins";
+
+
+
+// SETTINGS
+// Contient les variables sur les polices, les définitions de couleurs, les définitions de  grandeurs,   etc.
+@import "02-settings/colors";
+@import "02-settings/fonts";
+@import "02-settings/dimensions";
+@import "02-settings/global";
+
+
+
+// GENERIC
+// Permet de réinitialiser les CSS et de changer le modèle de boîte en box-sizing: border-box
+@import "03-generic/reset";
+
+
+
+// ELEMENTS
+// Modification des styles généraux de la page. Ce sont les styles qui seront généralement hérités par les éléments de la page.
+@import "04-elements/body";
+@import "04-elements/headings";
+@import "04-elements/hr";
+@import "04-elements/images";
+@import "04-elements/links";
+@import "04-elements/wrapper";
+@import "04-elements/form";
+
+
+
+// COMPONENTS
+// Composants d'interface utilisateur spécifiques.
+// C’est là que la majorité de notre travail a lieu.
+@import "05-components/header-page";
+@import "05-components/footer-page";
+@import "05-components/section-hero";
+@import "05-components/section-contact";
+@import "05-components/section-images";
+@import "05-components/formulaire-inscription";
+@import "05-components/formulaire-commentaires";
+
+
+
+// UTILITIES
+// Utilitaires et classes auxiliaires avec possibilité de remplacer tout ce qui précède, par exemple masquer les éléments de la page
+@import "06-utilities/spacing";
+@import "06-utilities/hide";
+@import "06-utilities/print";
+

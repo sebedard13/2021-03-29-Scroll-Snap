@@ -1,0 +1,7 @@
+# Ne pas mettre les fichiers ou dossiers suivant :
+.idea/
+dist/
+theme/css
+theme/data
+theme/js
+node_modules/
