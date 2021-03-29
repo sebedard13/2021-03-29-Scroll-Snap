@@ -1,1 +1,2 @@
-# Template-Web Simple
+# Scroll Snap
+Responsive
