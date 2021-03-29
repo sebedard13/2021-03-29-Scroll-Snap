@@ -97,7 +97,7 @@ const folder = {
 const copier_normalize = function(){
     return gulp.src('node_modules/normalize.css/normalize.css')
         .pipe(gulp.dest(folder.dist +'/css'))
-        .pipe(gulp.dest(folder.wordpress +'/css'))
+        //.pipe(gulp.dest(folder.wordpress +'/css'))
 };
 
 // Processus d’optimisation des data
@@ -108,16 +108,16 @@ const optimiser_data = function() {
         .pipe(newer(out))                           //Permets de traiter seulement les nouveaux fichiers ou ceux qui ont été modifiés.
         .pipe(imagemin({ optimizationLevel: 7 }))   //Optimisation des fichiers data au format PNG, JPEG, GIF et SVG.
         .pipe(gulp.dest(out))
-        .pipe(gulp.dest(folder.wordpress + 'data/'));                      //Copie tous les fichiers optimisés vers la destination.
+        //.pipe(gulp.dest(folder.wordpress + 'data/'));                      //Copie tous les fichiers optimisés vers la destination.
 };
-const optimiser_data_temp = function() {
-    var out = folder.dist + 'datatemp/';
-
-    return gulp.src(folder.src + 'datatemp/**/*')     //Récupère tous les fichiers du dossier et des sous-dossiers.
-        .pipe(newer(out))                           //Permets de traiter seulement les nouveaux fichiers ou ceux qui ont été modifiés.
-        .pipe(imagemin({ optimizationLevel: 7 }))   //Optimisation des fichiers data au format PNG, JPEG, GIF et SVG.
-        .pipe(gulp.dest(out))//Copie tous les fichiers optimisés vers la destination.
-};
+// const optimiser_data_temp = function() {
+//     var out = folder.dist + 'datatemp/';
+//
+//     return gulp.src(folder.src + 'datatemp/**/*')     //Récupère tous les fichiers du dossier et des sous-dossiers.
+//         .pipe(newer(out))                           //Permets de traiter seulement les nouveaux fichiers ou ceux qui ont été modifiés.
+//         .pipe(imagemin({ optimizationLevel: 7 }))   //Optimisation des fichiers data au format PNG, JPEG, GIF et SVG.
+//         .pipe(gulp.dest(out))//Copie tous les fichiers optimisés vers la destination.
+// };
 
 // Processus d’optimisation du HTML
 const optimiser_html = function() {
@@ -150,7 +150,7 @@ const optimiser_css = function() {
         .pipe(postcss(postCssOpts))                 //Permet de faire des actions sur le css comme l'autoprefixeur et la compression du code
         .pipe(sourcemaps.write())                   //Permets de retrouver la ligne problématique dans le fichier original.
         .pipe(gulp.dest(folder.dist + 'css/'))
-        .pipe(gulp.dest(folder.wordpress + 'css/'));
+        //.pipe(gulp.dest(folder.wordpress + 'css/'));
 
 };
 
@@ -166,7 +166,7 @@ const optimiser_js = function() {
         .pipe(terser())                           //Reformate le script sur une seule ligne
         .pipe(sourcemaps.write())                   //Permets de retrouver la ligne problématique dans le fichier original.
         .pipe(gulp.dest(out + 'js/'))             //Copie tous les fichiers optimisés vers la destination.
-        .pipe(gulp.dest(folder.wordpress + 'js/'));
+        //.pipe(gulp.dest(folder.wordpress + 'js/'));
 };
 
 // Processus qui vérifie s'il y a eu un changement dans le dossier et exécute le processus qui s'y rattache
@@ -175,7 +175,7 @@ const watch = function() {
     // image changes
     gulp.watch(folder.src + 'data/**/*', gulp.parallel(optimiser_data));
 
-    gulp.watch(folder.src + 'datatemp/**/*', gulp.parallel(optimiser_data_temp));
+    //gulp.watch(folder.src + 'datatemp/**/*', gulp.parallel(optimiser_data_temp));
 
     // html changes
     gulp.watch(folder.src + '**/*', gulp.parallel(optimiser_html));
@@ -216,9 +216,10 @@ const serveur = function () {
 
 gulp.task('copier_normalize', copier_normalize);
 gulp.task('optimiser_data', optimiser_data);
-gulp.task('optimiser_data_temp', optimiser_data_temp);
+// gulp.task('optimiser_data_temp', optimiser_data_temp);
 gulp.task('update_index_list', updateIndex);
-gulp.task('optimiser_html', gulp.series('update_index_list', 'optimiser_data', 'optimiser_data_temp', optimiser_html));
+//gulp.task('optimiser_html', gulp.series('update_index_list', 'optimiser_data', 'optimiser_data_temp', optimiser_html));
+gulp.task('optimiser_html', gulp.series('update_index_list', 'optimiser_data', optimiser_html));
 gulp.task('optimiser_css', optimiser_css);
 gulp.task('optimiser_js', optimiser_js);
 gulp.task('watch', watch);

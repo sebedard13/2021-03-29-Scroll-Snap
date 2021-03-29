@@ -1,1 +1,1 @@
-# Template-Wordpress
+# Template-Web Simple
